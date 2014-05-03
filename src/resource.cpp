@@ -94,3 +94,47 @@ struct ILM *ILM_MinusInstance(struct ILM *pList, int id)
 	pAux->s_instance--;
 	return pList;
 }
+
+bool ISM_IfEmpty(struct ISM *pList)
+{
+	if(pList==NULL)
+		return true;
+	else
+		return false;
+}
+
+struct ISM *ISM_Pop(struct ISM *pList)
+{
+	struct ISM *pAux;
+	pAux = pList;
+	pList = pAux->Prox;
+	free(pAux);
+	return pList;
+}
+
+SDL_Rect *ISM_TopSrc(struct ISM *pList)
+{
+	return pList->s_src;
+}
+
+SDL_Rect *ISM_TopDest(struct ISM *pList)
+{
+	return pList->s_dest;
+}
+
+SDL_Texture *ISM_TopTexture(struct ISM *pList)
+{
+	return pList->s_texture;
+}
+
+struct ISM *ISM_Insert(struct ISM *pList, SDL_Rect *src, SDL_Rect *dest, SDL_Texture *texture)
+{
+	struct ISM *pNewNode;
+	pNewNode = (ISM*) malloc(sizeof(ISM));
+	pNewNode->s_src = src;
+	pNewNode->s_dest = dest;
+	pNewNode->s_texture = texture;
+	pNewNode->Prox = pList;
+	pList = pNewNode;
+	return pList;
+}
