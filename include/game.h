@@ -5,7 +5,9 @@
 #include "window.h"
 #include "canvas.h"
 #include "keyboard.h"
-#include "opening.h"
+#include "loadImages.h"
+#include "fade.h"
+#include "resource.h"
 
 class Game {
 public:
@@ -19,8 +21,11 @@ private:
     Window *m_window;
     Canvas *m_canvas;
     Keyboard *m_keyboard;
-    Opening *m_opening;
+    Fade *m_fade;
+    LoadImages *m_loadImage;
 
+    struct ISM * m_stack;
+    
     bool m_quit;
 };
 
