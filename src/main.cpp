@@ -1,31 +1,21 @@
 #include <iostream>
 
+#include "game.h"
+
 using namespace std;
 
-bool init(){
-
-	bool success = true;
-	char sair = 'n';
-
-	cout << "Main loop iniciado!" << endl;
-	cout << "Deseja sair? [s] ou [n]" << endl;
-	cin >> sair;
-
-	if (sair == 'n'){
-		success = true;
-	}
-	else if (sair == 's'){
-		success = false;
-	}
-
-	return success;
-}
-
-int main (){
-	
-	while (init()){
-
-	}
-
+int main ()
+{
+    Game *game = NULL;
+    try 
+    {
+        game = new Game();
+        game->run();
+    } 
+    catch (const string& error_message) 
+    {
+        cout << "Erro: " << error_message << endl;
+        return -1;
+    }
 	return 0;
 }
