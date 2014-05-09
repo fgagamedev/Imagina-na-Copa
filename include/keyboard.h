@@ -3,15 +3,15 @@
 
 #include <SDL2/SDL.h>
 
-
 class Keyboard{
 public:
 	Keyboard(bool *quit);
 
-	void eventLoop();
+	void exitEvent();
+	SDL_Event getCurrentEvent();
 private:
 	SDL_Event event;
-	bool keystate[2];
+	bool exitstate[2];
 	bool *m_quit;
 };
 

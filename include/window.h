@@ -8,10 +8,10 @@ class Window {
         Window(unsigned int w = 800, unsigned int h = 600);
         ~Window();
 
-        SDL_Renderer * renderer() const;
         int w() const;
         int h() const;
-        SDL_Surface * getSurface() const;
+        SDL_Surface* getSurface() const;
+        SDL_Renderer* renderer() const;
 
     private:
         unsigned int m_w;

@@ -21,6 +21,7 @@ private:
 
 	SDL_Texture* m_tryforceLogo;
 	SDL_Texture* m_otherLogo;
+	SDL_Texture* m_rating;
 	SDL_Texture* m_menu;
 	SDL_Texture* m_newTexture;
 	SDL_Surface* m_loadedSurface;
@@ -29,6 +30,8 @@ private:
 	SDL_Rect destTryforceLogo;
 	SDL_Rect srcOtherLogo;
 	SDL_Rect destOtherLogo;
+	SDL_Rect srcRating;
+	SDL_Rect destRating;
 	SDL_Rect srcMenu;
 	SDL_Rect destMenu;
 };

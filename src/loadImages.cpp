@@ -24,6 +24,16 @@ LoadImages::LoadImages(Window* window) : m_window(window)
     destOtherLogo.y = 600/2 - 400/2;
     destOtherLogo.w = 459;
     destOtherLogo.h = 400;
+    
+    // Rating
+    srcRating.x = 0;
+    srcRating.y = 0;
+    srcRating.w = 191;
+    srcRating.h = 285;
+    destRating.x = 800/2 - 191/2;
+    destRating.y = 600/2 - 285/2;
+    destRating.w = 191;
+    destRating.h = 285;
 
     // InC menu
     srcMenu.x = 0;
@@ -40,6 +50,7 @@ LoadImages::~LoadImages()
 {
 	SDL_DestroyTexture (m_tryforceLogo);
 	SDL_DestroyTexture (m_otherLogo);
+    SDL_DestroyTexture (m_rating);
 	SDL_DestroyTexture (m_menu);
 	SDL_DestroyTexture (m_newTexture);
 	SDL_FreeSurface (m_loadedSurface);
@@ -52,6 +63,8 @@ LoadImages::loadTextures(struct ISM *m_stack)
     {
         m_menu = openingTextures("res/images/menu.png");
         m_stack = ISM_Insert(m_stack, &srcMenu, &destMenu, m_menu);
+        m_rating = openingTextures("res/images/rating.png");
+        m_stack = ISM_Insert(m_stack, &srcRating, &destRating, m_rating);
         m_otherLogo = openingTextures("res/images/demaisLogos.png");
         m_stack = ISM_Insert(m_stack, &srcOtherLogo, &destOtherLogo, m_otherLogo);
         m_tryforceLogo = openingTextures( "res/images/logo.png" );

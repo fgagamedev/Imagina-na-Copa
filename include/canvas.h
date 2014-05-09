@@ -2,11 +2,13 @@
 #define CANVAS_H
 
 #include "window.h"
+//#include "caio.h"
 
 class Canvas
 {
 	public:
         Canvas(Window *window);
+        ~Canvas();
 
         void drawLines(int linePosition[4], int lineColor[4]);
         void fillPoints(int circlePosition[4]);
@@ -31,7 +33,8 @@ class Canvas
         void drawAim();
 
     private:
-        Window *m_window;
+        //Caio* m_caio;
+        Window* m_window;
 };
 
 #endif // CANVAS_H

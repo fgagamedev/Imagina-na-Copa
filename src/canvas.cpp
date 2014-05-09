@@ -1,17 +1,26 @@
 #include <SDL2/SDL.h>
 #include "canvas.h"
-	
+#include "caio.h"
+
 Canvas::Canvas(Window *window) : m_window(window)
 {
+//    m_caio = new Caio();
 }
 
-void Canvas::drawLines(int linePosition[4], int lineColor[4])
+Canvas::~Canvas()
+{
+  //  delete m_caio;
+}
+
+void 
+Canvas::drawLines(int linePosition[4], int lineColor[4])
 {
     SDL_SetRenderDrawColor( m_window->renderer(), lineColor[0], lineColor[1], lineColor[2], lineColor[3] );
     SDL_RenderDrawLine( m_window->renderer(), linePosition[0], linePosition[1], linePosition[2], linePosition[3] );
 }
 
-void Canvas::fillPoints(int circlePosition[4])
+void 
+Canvas::fillPoints(int circlePosition[4])
 {
 	for (int j = circlePosition[2]; j <= circlePosition[3]; j++)
 	{
@@ -23,11 +32,11 @@ void Canvas::fillPoints(int circlePosition[4])
         SDL_RenderDrawPoint(m_window->renderer(), circlePosition[0]+j, circlePosition[1]-circlePosition[2]);
         SDL_RenderDrawPoint(m_window->renderer(), circlePosition[0]-j, circlePosition[1]+circlePosition[2]);
         SDL_RenderDrawPoint(m_window->renderer(), circlePosition[0]-j, circlePosition[1]-circlePosition[2]);
-
 	}
 }
 
-void Canvas::drawFilledCircle(int radius, int circlePosition[4], int circleColor[4])
+void 
+Canvas::drawFilledCircle(int radius, int circlePosition[4], int circleColor[4])
 {	
 	int error = 3 - (radius << 1);
 	circlePosition[2] = 0;
@@ -52,7 +61,8 @@ void Canvas::drawFilledCircle(int radius, int circlePosition[4], int circleColor
 	} while (circlePosition[2] <= circlePosition[3]);
 }
 
-void Canvas::drawRectangle (int rectPosition[4], int rectColor[4])
+void 
+Canvas::drawRectangle (int rectPosition[4], int rectColor[4])
 {
 	SDL_Rect fillRect = { rectPosition[0], rectPosition[1], rectPosition[2], rectPosition[3] };
     SDL_SetRenderDrawColor( m_window->renderer(), rectColor[0], rectColor[1], rectColor[2], rectColor[3] );
@@ -107,10 +117,7 @@ void Canvas::drawPlatform()
 
 void Canvas::drawCaio()
 {
-	
-    int rectanglePosition[4] = {50, m_window->h()-250, 50, 100};
-	int rectangleRGBAColor[4] = { 0, 255, 0, 255 };
-    drawRectangle(rectanglePosition, rectangleRGBAColor);
+	//drawRectangle(m_caio->getPos(), m_caio->getRGBA());
 }
 
 void Canvas::drawSebastiao()
