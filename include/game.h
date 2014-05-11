@@ -9,14 +9,17 @@
 #include "fade.h"
 #include "resource.h"
 #include "caio.h"
+#include "inputhandler.h"
 
-class Game {
+class Game : public InputHandler 
+{
 public:
     Game();
     ~Game();
 
     void run();
 
+    bool handle(SDL_Event &event);
 private:
     System *m_system;
     Window *m_window;
@@ -29,6 +32,8 @@ private:
     struct ISM * m_stack;
     
     bool m_quit;
+    bool exitstate[2];
+
 };
 
 #endif // GAME_H

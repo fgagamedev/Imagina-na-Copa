@@ -2,17 +2,20 @@
 #define INPUT_H
 
 #include <SDL2/SDL.h>
-#include "keyboard.h"
+#include <vector>
+#include "inputhandler.h"
+
+using namespace std;
 
 class Input
 {
 public:
-	Input(bool* quit);
+	Input();
 	~Input();
 	void eventLoop();
+	void addHandler(InputHandler * h);
 private:
-	Keyboard *m_keyboard;
-	bool m_quit;
+	vector<InputHandler *> m_handlers;
 };
 
 #endif // INPUT_H

@@ -6,7 +6,7 @@ using namespace std;
 
 Fade::Fade(Window* window) : m_window(window)
 {
-
+    m_escape = false;
 }
 Fade::~Fade()
 {
@@ -16,9 +16,12 @@ Fade::~Fade()
 void 
 Fade::showImage(struct ISM *m_stack)
 {
-    fadein(m_stack);
-    SDL_Delay(2000);
-    fadeout(m_stack);
+    if (m_escape == false)
+    {    
+        fadein(m_stack);
+        SDL_Delay(2000);
+        fadeout(m_stack);
+    }
 }
 
 void
@@ -56,3 +59,39 @@ Fade::fadeout(struct ISM * m_stack)
 
 }
 
+bool
+Fade::handle(SDL_Event &event)
+{
+    bool processed = false;
+    
+    switch (event.type)
+    {
+        case SDL_KEYDOWN:
+            switch(event.key.keysym.sym)
+            {
+                case SDLK_ESCAPE:
+                    m_escape = true;
+                    processed = true;
+                break;
+                default:
+                break;
+            }
+        break;
+
+        case SDL_KEYUP:
+            switch(event.key.keysym.sym)
+            {
+                case SDLK_ESCAPE:
+                    m_escape = false;
+                    processed = true;
+                break;
+                default:
+                break;
+            }
+        break;
+
+        default:
+        break;
+    }
+    return processed;
+}

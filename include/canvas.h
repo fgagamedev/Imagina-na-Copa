@@ -1,4 +1,4 @@
-#ifndef CANVAS_H
+#ifndef CANVAS_Hs
 #define CANVAS_H
 
 #include "window.h"
@@ -33,7 +33,7 @@ class Canvas
         void drawAim();
 
     private:
-        //Caio* m_caio;
+//        Caio* m_caio;
         Window* m_window;
 };
 
