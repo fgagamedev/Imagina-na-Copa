@@ -1,6 +1,6 @@
 #include <SDL2/SDL.h>
 #include "canvas.h"
-#include "caio.h"
+//#include "caio.h"
 
 Canvas::Canvas(Window *window) : m_window(window)
 {
@@ -9,7 +9,7 @@ Canvas::Canvas(Window *window) : m_window(window)
 
 Canvas::~Canvas()
 {
-  //  delete m_caio;
+//    delete m_caio;
 }
 
 void 
@@ -117,7 +117,7 @@ void Canvas::drawPlatform()
 
 void Canvas::drawCaio()
 {
-	//drawRectangle(m_caio->getPos(), m_caio->getRGBA());
+//	drawRectangle(m_caio->getPos(), m_caio->getRGBA());
 }
 
 void Canvas::drawSebastiao()

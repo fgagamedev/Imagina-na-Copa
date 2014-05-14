@@ -7,9 +7,12 @@ using namespace std;
 Fade::Fade(Window* window) : m_window(window)
 {
     m_escape = false;
+<<<<<<< HEAD
     m_input = new Input();
     m_input->addHandler(this);
 
+=======
+>>>>>>> a1e1f4b7806a829f025ffc432c8f0b81cab8c5cf
 }
 Fade::~Fade()
 {
@@ -19,8 +22,17 @@ Fade::~Fade()
 void 
 Fade::showImage(struct ISM *m_stack)
 {
+<<<<<<< HEAD
     fadein(m_stack);
     fadeout(m_stack);
+=======
+    if (m_escape == false)
+    {    
+        fadein(m_stack);
+        SDL_Delay(2000);
+        fadeout(m_stack);
+    }
+>>>>>>> a1e1f4b7806a829f025ffc432c8f0b81cab8c5cf
 }
 
 void
@@ -99,7 +111,11 @@ Fade::handle(SDL_Event &event)
             switch(event.key.keysym.sym)
             {
                 case SDLK_ESCAPE:
+<<<<<<< HEAD
                     m_escape = true;
+=======
+                    m_escape = false;
+>>>>>>> a1e1f4b7806a829f025ffc432c8f0b81cab8c5cf
                     processed = true;
                 break;
                 default:

@@ -7,8 +7,14 @@
 
 using namespace std;
 
+<<<<<<< HEAD
 Caio::Caio()
 {
+=======
+Caio::Caio(Window* window) : m_window(window)
+{
+    m_window = window;
+>>>>>>> a1e1f4b7806a829f025ffc432c8f0b81cab8c5cf
 	pos[0] = 50;
 	pos[1] = 350;
 	pos[2] = 38;
@@ -51,14 +57,24 @@ Caio::handle(SDL_Event &event)
             {
                 case SDLK_a:
 					dx -= speed;
+<<<<<<< HEAD
 					move();
                     cout << "esquerda" << endl;
+=======
+					cout << "esqueda" << endl;
+					cout << dx << endl;
+>>>>>>> a1e1f4b7806a829f025ffc432c8f0b81cab8c5cf
                     processed = true;
                 break;
                 case SDLK_d:
                 	dx += speed;
+<<<<<<< HEAD
                     move();
                 	cout << "direita" << endl;
+=======
+                	cout << "direita" << endl;
+					cout << dx << endl;
+>>>>>>> a1e1f4b7806a829f025ffc432c8f0b81cab8c5cf
                     processed = true;
                 break;
                 default:
@@ -71,11 +87,17 @@ Caio::handle(SDL_Event &event)
             {
                 case SDLK_a:
                 	dx += speed;
+<<<<<<< HEAD
                     move();
                     processed = true;
                 case SDLK_d:
                 	dx -= speed;
                     move();
+=======
+                    processed = true;
+                case SDLK_d:
+                	dx -= speed;
+>>>>>>> a1e1f4b7806a829f025ffc432c8f0b81cab8c5cf
                     processed = true;
                 break;
                 default:
@@ -85,12 +107,33 @@ Caio::handle(SDL_Event &event)
 
         default:
         break;
+<<<<<<< HEAD
     }
+=======
+    }        
+>>>>>>> a1e1f4b7806a829f025ffc432c8f0b81cab8c5cf
     return processed;
 }
 
+
 void
+<<<<<<< HEAD
 Caio::draw(SDL_Renderer* renderer)
+=======
+Caio::drawCaio()
+{
+//    drawRectangle(pos, rgba);
+}
+
+int*
+Caio::getPos() 
+{
+	return pos;
+}
+
+int*
+Caio::getRGBA() 
+>>>>>>> a1e1f4b7806a829f025ffc432c8f0b81cab8c5cf
 {
     Rectangle().drawRectangle(renderer, pos, rgba);
 }

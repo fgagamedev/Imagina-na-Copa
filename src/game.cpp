@@ -15,14 +15,23 @@ Game::Game()
         m_window = new Window();
         m_loadImage = new LoadImages(m_window);
         m_fade = new Fade(m_window);
+<<<<<<< HEAD
         m_input = new Input();
         m_caio = new Caio();
+=======
+        m_canvas = new Canvas(m_window);
+        m_input = new Input();
+        m_caio = new Caio(m_window);
+>>>>>>> a1e1f4b7806a829f025ffc432c8f0b81cab8c5cf
 
         m_stack = NULL;
         exitstate[0] = false;
         exitstate[1] = false;
+<<<<<<< HEAD
         initialized = false;
 
+=======
+>>>>>>> a1e1f4b7806a829f025ffc432c8f0b81cab8c5cf
         m_input->addHandler(this);
         m_input->addHandler(m_caio);
         m_input->addHandler(m_fade);
@@ -54,10 +63,21 @@ Game::~Game()
 void
 Game::run()
 {   
+<<<<<<< HEAD
+=======
+    //Front End
+    m_stack = m_loadImage->loadTextures(m_stack);
+    for (int i = 0; i < 4; i++)
+    {
+        m_fade->showImage(m_stack);
+        m_stack = ISM_Pop(m_stack);
+    }
+>>>>>>> a1e1f4b7806a829f025ffc432c8f0b81cab8c5cf
     //Game loop
     while ( !m_quit )
     {
         m_input->eventLoop();
+<<<<<<< HEAD
         this->frontEnd();
         drawElements(m_window->renderer());
         m_caio->draw(m_window->renderer());
@@ -77,6 +97,12 @@ Game::frontEnd()
             m_fade->showImage(m_stack);
             m_stack = ISM_Pop(m_stack);
         }
+=======
+        //m_caio->move();
+        m_caio->drawCaio();
+        m_canvas->drawElements();
+        m_canvas->update();
+>>>>>>> a1e1f4b7806a829f025ffc432c8f0b81cab8c5cf
     }
 }
 
@@ -136,6 +162,7 @@ Game::handle(SDL_Event &event)
 
     return processed;
 }
+<<<<<<< HEAD
 
 Game*
 Game::instance()
@@ -146,3 +173,5 @@ Game::instance()
     }
     return s_instance;
 }
+=======
+>>>>>>> a1e1f4b7806a829f025ffc432c8f0b81cab8c5cf
