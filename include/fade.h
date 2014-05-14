@@ -6,20 +6,25 @@
 #include <string>
 #include "resource.h"
 #include "window.h"
+#include "input.h"
+#include "inputhandler.h"
 
 using namespace std;
 
-class Fade{
+class Fade : public InputHandler 
+{
 public:
 	Fade(Window* window);
 	~Fade();
 	void showImage(struct ISM *m_stack);
 	void fadein(struct ISM *m_stack);
 	void fadeout(struct ISM *m_stack);
-
+	bool handle(SDL_Event &event);
 private:
 	Window* m_window;
+	Input* m_input;
 	Uint8 alpha;
+	bool m_escape;
 };
 
 #endif // FADE_H

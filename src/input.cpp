@@ -1,19 +1,44 @@
 #include "input.h"
-#include "keyboard.h"
+#include <queue>
+#include <iostream>
 
-Input::Input(bool* quit)
+using namespace std;
+
+Input::Input()
 {
-	m_keyboard = new Keyboard(quit);
-	this->m_quit = quit;
 }
 
 Input::~Input()
 {
-	delete m_keyboard;
 }
 
 void
 Input::eventLoop()
 {
-	m_keyboard->exitEvent();
+	SDL_Event event;
+	queue <SDL_Event> events;
+
+	//pegando eventos pendentes
+    while (SDL_PollEvent(&event) != 0)
+    {
+    	events.push(event);
+	}
+	while(events.empty() == false)
+	{
+		event = events.front();
+		events.pop();
+		for (size_t i = 0; i < m_handlers.size(); i++)
+		{
+			if (m_handlers[i]->handle(event))
+			{
+				break;
+			}
+		}
+	}
+}
+
+void 
+Input::addHandler(InputHandler * h)
+{
+	m_handlers.push_back(h);
 }

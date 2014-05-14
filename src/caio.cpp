@@ -2,29 +2,28 @@
 #include <iostream>
 #include "canvas.h"
 #include "caio.h"
+#include "game.h"
+#include "draw.h"
 
 using namespace std;
 
-Caio::Caio(Window* window) //: m_window(window)
+Caio::Caio()
 {
-    this->m_window = window;
-    m_canvas = new Canvas(m_window);
 	pos[0] = 50;
 	pos[1] = 350;
-	pos[2] = 50;
-	pos[3] = 100;
+	pos[2] = 38;
+	pos[3] = 114;
 	rgba[0] = 0;
 	rgba[1] = 255;
 	rgba[2] = 0;
 	rgba[3] = 255;
 
-	speed = 25;
+	speed = 19;
 	dx = 0;
 }
 
 Caio::~Caio()
 {	
-    delete m_canvas;
 }
 
 void
@@ -41,67 +40,57 @@ Caio::move()
 	}
 }
 
-void
-Caio::handleEvent()
+bool
+Caio::handle(SDL_Event &event)
 {
-	while (SDL_PollEvent(&event) != 0)
+    bool processed = false;
+    switch (event.type)
     {
-        switch (event.type)
-        {
-            case SDL_KEYDOWN:
-                switch(event.key.keysym.sym)
-                {
-                    case SDLK_a:
-						dx -= speed;
-						cout << "esqueda" << endl;
-						cout << dx << endl;
-                    break;
-                    case SDLK_d:
-                    	dx += speed;
-                    	cout << "direita" << endl;
-						cout << dx << endl;
-                    break;
-                    default:
-                        //do nothing
-                    break;
-                }
-            break;
+        case SDL_KEYDOWN:
+            switch(event.key.keysym.sym)
+            {
+                case SDLK_a:
+					dx -= speed;
+					move();
+                    cout << "esquerda" << endl;
+                    processed = true;
+                break;
+                case SDLK_d:
+                	dx += speed;
+                    move();
+                	cout << "direita" << endl;
+                    processed = true;
+                break;
+                default:
+                break;
+            }
+        break;
 
-            case SDL_KEYUP:
-                switch(event.key.keysym.sym)
-                {
-                    case SDLK_a:
-                    	dx += speed;
-                    case SDLK_d:
-                    	dx -= speed;
-                    break;
-                    default:
-                        //do nothing
-                    break;
-                }
-            break;
+        case SDL_KEYUP:
+            switch(event.key.keysym.sym)
+            {
+                case SDLK_a:
+                	dx += speed;
+                    move();
+                    processed = true;
+                case SDLK_d:
+                	dx -= speed;
+                    move();
+                    processed = true;
+                break;
+                default:
+                break;
+            }
+        break;
 
-            default:
-                // do nothing
-            break;
-        }        
+        default:
+        break;
     }
+    return processed;
 }
 
 void
-Caio::drawCaio()
+Caio::draw(SDL_Renderer* renderer)
 {
-    m_canvas->drawRectangle(pos, rgba);
-}
-
-int*
-Caio::getPos() 
-{
-	return pos;
-}
-
-int*
-Caio::getRGBA() 
-{
-	return rgba;
+    Rectangle().drawRectangle(renderer, pos, rgba);
 }

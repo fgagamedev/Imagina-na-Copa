@@ -4,13 +4,13 @@
 
 using namespace std;
 
+Game* Game::s_instance = 0;
+
 int main ()
 {
-    Game *game = NULL;
     try 
     {
-        game = new Game();
-        game->run();
+        Game::instance()->run();
     } 
     catch (const string& error_message) 
     {
