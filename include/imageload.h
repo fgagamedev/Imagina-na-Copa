@@ -17,11 +17,13 @@ public:
 	SDL_Texture* loadImg(const string& path);
 	void release(SDL_Texture* texture);
 	void update(SDL_Texture* texture, SDL_Rect* destRect);
+	void fadein(SDL_Texture* m_texture, SDL_Rect* destRect);
+	void fadeout(SDL_Texture* m_texture, SDL_Rect* destRect);
 
 private:
 	ImageLoad();
 	SDL_Renderer* m_renderer;
-
+	Uint8 alpha;
 };
 
 #endif // IMAGELOAD_H

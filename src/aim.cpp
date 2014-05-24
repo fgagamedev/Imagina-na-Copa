@@ -1,36 +1,35 @@
-#include "platform.h"
-#include "imageload.h"
+#include "aim.h"
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_image.h>
 #include <string>
 
 using namespace std;
 
-Platform::Platform()
+Aim::Aim()
 {
-	position.x = 0;
-	position.y = 450;
-	position.w = 800;
-	position.h = 150;
+	position.x = 400;
+	position.y = 300;
+	position.w = 20;
+	position.h = 20;
 
 	isDrawn = false;
 
     imageLoad = imageLoad->getInstance();
 }
 
-Platform::~Platform()
+Aim::~Aim()
 {
 	// Nothing yet
 }
 
 void 
-Platform::init()
+Aim::init()
 {
-	m_texture = imageLoad->loadImg("res/images/platform.png");
+	m_texture = imageLoad->loadImg("res/images/aim.png");
 }
 
 void 
-Platform::draw()
+Aim::draw()
 {
 	if (!isDrawn)
 	{
@@ -41,7 +40,7 @@ Platform::draw()
 }
 
 void 
-Platform::release()
+Aim::release()
 {
 	SDL_DestroyTexture(m_texture);
 }

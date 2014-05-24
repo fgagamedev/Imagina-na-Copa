@@ -16,6 +16,8 @@ private:
 	SDL_Texture* m_texture;
 	SDL_Rect position;
 	ImageLoad* imageLoad;
+
+	bool isDrawn;
 };
 
 #endif // PLATFORM_H

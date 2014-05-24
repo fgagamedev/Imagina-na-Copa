@@ -16,10 +16,10 @@ public:
 	void update();
 	void release();
 private:
-	Hp hp;
-	Inventory inventory;
-	Dialogue dialogue;
-	Sebastiao sebastiao;
+	Hp* hp;
+	Inventory* inventory;
+	Dialogue* dialogue;
+	Sebastiao* sebastiao;
 };
 
 #endif // HUD_H

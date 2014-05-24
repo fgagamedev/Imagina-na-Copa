@@ -2,8 +2,8 @@
 #define ENTITY_H
 
 #include "caio.h"
-#include "mira.h"
-#include "enemies.h"
+#include "aim.h"
+#include "enemy.h"
 
 class Entity
 {
@@ -16,8 +16,8 @@ public:
 	void release();
 private:
 	Caio* caio;
-	Enemies* enemies;
-	Mira* mira;
+	Enemy* enemy;
+	Aim* aim;
 
 };
 

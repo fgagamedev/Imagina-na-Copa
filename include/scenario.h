@@ -3,7 +3,7 @@
 
 #include "background.h"
 #include "platform.h"
-#include "secondplane.h"
+#include "secondlayer.h"
 
 class Scenario
 {
@@ -17,7 +17,7 @@ public:
 private:
 	Background* background;
 	Platform* platform;
-	SecondPlane* secondplane;
+	SecondLayer* secondlayer;
 };
 
 #endif // SCENARIO_H

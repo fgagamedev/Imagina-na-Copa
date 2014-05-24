@@ -10,13 +10,13 @@ Scenario::Scenario()
 	try
 	{
 		background = new Background();
-		secondplane = new SecondPlane();
+		secondlayer = new SecondLayer();
 		platform = new Platform();
 	}
 	catch (const string& e)
 	{
 		delete platform;
-		delete secondplane;
+		delete secondlayer;
 		delete background;
 
 		throw e;
@@ -26,7 +26,7 @@ Scenario::Scenario()
 Scenario::~Scenario()
 {
 	delete platform;
-	delete secondplane;
+	delete secondlayer;
 	delete background;
 }
 
@@ -34,7 +34,7 @@ void
 Scenario::init()
 {
 	background->init();
-	secondplane->init();
+	secondlayer->init();
 	platform->init();
 }
 
@@ -42,7 +42,7 @@ void
 Scenario::draw()
 {
 	background->draw();
-	secondplane->draw();
+	secondlayer->draw();
 	platform->draw();
 }
 
@@ -56,6 +56,6 @@ void
 Scenario::release()
 {
 	platform->release();
-	secondplane->release();
+	secondlayer->release();
 	background->release();
 }

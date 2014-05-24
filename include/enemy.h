@@ -1,24 +1,26 @@
-#ifndef INVENTORY_H
-#define INVENTORY_H
+#ifndef ENEMY_H
+#define ENEMY_H
 
 #include <SDL2/SDL.h>
 #include "imageload.h"
 
-
-class Inventory
+class Enemy
 {
 public:
-	Inventory();
-	~Inventory();
+	Enemy();
+	~Enemy();
 	void init();
 	void draw();
 	void release();
+	
 private:
 	SDL_Texture* m_texture;
-	SDL_Rect position;
+	SDL_Texture* m_texture2;
+	SDL_Rect positionCurupira;
+	SDL_Rect positionUrubu;
 	ImageLoad* imageLoad;
 
 	bool isDrawn;
 };
 
-#endif // INVENTORY_H
+#endif // ENEMY_H

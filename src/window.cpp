@@ -46,7 +46,7 @@ Window::Window(unsigned int width, unsigned int height) : m_w(width), m_h(height
 Window::~Window()
 {
     SDL_DestroyRenderer(m_renderer);
-    //SDL_DestroyWindow(m_window);
+    SDL_DestroyWindow(m_window);
 }
 
 SDL_Renderer *

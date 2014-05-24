@@ -2,7 +2,7 @@
 #define HP_H
 
 #include <SDL2/SDL.h>
-#include <SDL2/SDL_image.h>
+#include "imageload.h"
 
 class Hp
 {
@@ -14,7 +14,10 @@ public:
 	void release();
 private:
 	SDL_Texture* m_texture;
+	SDL_Rect position;
+	ImageLoad* imageLoad;
 
+	bool isDrawn;
 };
 
 #endif // HP_H

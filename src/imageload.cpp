@@ -77,7 +77,39 @@ ImageLoad::release(SDL_Texture* texture)
 void
 ImageLoad::update(SDL_Texture* m_texture, SDL_Rect* destRect)
 {
-	//SDL_RenderClear(m_renderer);
     SDL_RenderCopy( m_renderer, m_texture, NULL, destRect );
     SDL_RenderPresent( m_renderer );
+}
+
+void
+ImageLoad::fadein(SDL_Texture* m_texture, SDL_Rect* destRect)
+{
+    for (alpha = 0x00; alpha < 0xFF;)
+    {
+        alpha += 0x05;
+
+        SDL_SetTextureBlendMode( m_texture, SDL_BLENDMODE_BLEND );
+        SDL_SetTextureAlphaMod( m_texture, alpha );
+
+        SDL_RenderClear( m_renderer );
+        SDL_RenderCopy( m_renderer, m_texture, NULL, destRect );
+        SDL_RenderPresent( m_renderer );
+    }
+}
+
+void
+ImageLoad::fadeout(SDL_Texture* m_texture, SDL_Rect* destRect)
+{
+    for (alpha = 0xFF; alpha > 0x00;)
+    {
+        alpha -= 0x01;
+     
+        SDL_SetTextureBlendMode( m_texture, SDL_BLENDMODE_BLEND );
+        SDL_SetTextureAlphaMod( m_texture, alpha );
+
+        SDL_RenderClear( m_renderer );
+        SDL_RenderCopy( m_renderer, m_texture, NULL, destRect );
+        SDL_RenderPresent( m_renderer );
+    }
+
 }

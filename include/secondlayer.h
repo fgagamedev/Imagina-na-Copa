@@ -1,15 +1,14 @@
-#ifndef INVENTORY_H
-#define INVENTORY_H
+#ifndef SECONDLAYER_H
+#define SECONDLAYER_H
 
-#include <SDL2/SDL.h>
 #include "imageload.h"
+#include <SDL2/SDL.h>
 
-
-class Inventory
+class SecondLayer 
 {
 public:
-	Inventory();
-	~Inventory();
+	SecondLayer();
+	~SecondLayer();
 	void init();
 	void draw();
 	void release();
@@ -21,4 +20,4 @@ private:
 	bool isDrawn;
 };
 
-#endif // INVENTORY_H
+#endif // SECONDLAYER_H

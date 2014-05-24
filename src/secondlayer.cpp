@@ -1,4 +1,4 @@
-#include "background.h"
+#include "secondlayer.h"
 #include "imageload.h"
 #include <string>
 #include <SDL2/SDL.h>
@@ -6,43 +6,41 @@
 
 using namespace std;
 
-Background::Background()
+SecondLayer::SecondLayer()
 {
-	position.x = 0;
-	position.y = 0;
-	position.w = 800;
-	position.h = 600;
+	position.x = 60;
+	position.y = 150;
+	position.w = 120;
+	position.h = 120;
 
 	isDrawn = false;
 
     imageLoad = ImageLoad::getInstance();
 }
 
-Background::~Background()
+SecondLayer::~SecondLayer()
 {
 	// Nothing yet
 }
 
 void
-Background::init()
+SecondLayer::init()
 {
-
-	m_texture = imageLoad->loadImg("res/images/background.png");
+	m_texture = imageLoad->loadImg("res/images/sun.png");
 }
 
 void
-Background::draw()
+SecondLayer::draw()
 {
 	if (!isDrawn)
 	{
 		imageLoad->update(m_texture, &position);
-		
-		isDrawn = true;	
+		isDrawn = true;
 	}
 }
 
 void
-Background::release()
+SecondLayer::release()
 {
 	SDL_DestroyTexture(m_texture);
 }

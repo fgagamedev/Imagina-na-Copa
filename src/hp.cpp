@@ -8,7 +8,14 @@ using namespace std;
 
 Hp::Hp()
 {
-	// Nothing yet
+	position.x = 10;
+	position.y = 10;
+	position.w = 30;
+	position.h = 20;
+
+	isDrawn = false;
+
+    imageLoad = imageLoad->getInstance();
 }
 
 Hp::~Hp()
@@ -19,18 +26,27 @@ Hp::~Hp()
 void 
 Hp::init()
 {
-    ImageLoad* imageLoad = ImageLoad::getInstance();
 	m_texture = imageLoad->loadImg("res/images/hp.png");
 }
 
 void 
 Hp::draw()
 {
-	
+	if (!isDrawn)
+	{
+	    imageLoad->update(m_texture, &position);
+	    position.x = 50;
+	    imageLoad->update(m_texture, &position);
+	    position.x = 90;
+	    imageLoad->update(m_texture, &position);
+
+	    
+	    isDrawn = true;
+	}
 }
 
 void 
 Hp::release()
 {
-	
+	SDL_DestroyTexture(m_texture);	
 }

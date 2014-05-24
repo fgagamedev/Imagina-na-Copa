@@ -8,7 +8,14 @@ using namespace std;
 
 Sebastiao::Sebastiao()
 {
-	// Nothing yet
+	position.x = 535;
+	position.y = 10;
+	position.w = 250;
+	position.h = 125;
+
+	isDrawn = false;
+
+    imageLoad = imageLoad->getInstance();
 }
 
 Sebastiao::~Sebastiao()
@@ -19,18 +26,22 @@ Sebastiao::~Sebastiao()
 void 
 Sebastiao::init()
 {
-    ImageLoad* imageLoad = ImageLoad::getInstance();
 	m_texture = imageLoad->loadImg("res/images/sebastiao.png");
 }
 
 void 
 Sebastiao::draw()
 {
+	if (!isDrawn)
+	{
+		imageLoad->update(m_texture, &position);
 
+		isDrawn = true;
+	}
 }
 
 void 
 Sebastiao::release()
 {
-
+	SDL_DestroyTexture(m_texture);
 }

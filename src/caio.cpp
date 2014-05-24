@@ -12,6 +12,8 @@ Caio::Caio()
 	position.w = 50;
 	position.h = 100;
 
+	isDrawn = false;
+
     imageLoad = imageLoad->getInstance();
 }
 
@@ -29,7 +31,11 @@ Caio::init()
 void 
 Caio::draw()
 {
-    imageLoad->update(m_texture, &position);
+	if (!isDrawn)
+	{
+    	imageLoad->update(m_texture, &position);
+    	isDrawn = true;
+    }
 }
 
 void 

@@ -7,30 +7,48 @@ using namespace std;
 
 Hud::Hud()
 {
-	
+	try 
+	{
+		hp = new Hp();
+		inventory = new Inventory();
+		dialogue = new Dialogue();
+		sebastiao = new Sebastiao();
+	}
+	catch (const string& e)
+	{
+		delete sebastiao;
+		delete dialogue;
+		delete inventory;
+		delete hp;
+
+		throw e;	
+	}
 }
 
 Hud::~Hud()
 {
-	// Nothing yet
+	delete sebastiao;
+	delete dialogue;
+	delete inventory;
+	delete hp;
 }
 
 void 
 Hud::init()
 {
-	hp.init();
-	inventory.init();
-	dialogue.init();
-	sebastiao.init();
+	hp->init();
+	inventory->init();
+	dialogue->init();
+	sebastiao->init();
 }
 
 void 
 Hud::draw()
 {
-	hp.draw();
-	inventory.draw();
-	dialogue.draw();
-	sebastiao.draw();
+	hp->draw();
+	inventory->draw();
+	dialogue->draw();
+	sebastiao->draw();
 }
 
 void 
@@ -42,8 +60,8 @@ Hud::update()
 void 
 Hud::release()
 {
-	hp.release();
-	inventory.release();
-	dialogue.release();
-	sebastiao.release();
+	hp->release();
+	inventory->release();
+	dialogue->release();
+	sebastiao->release();
 }

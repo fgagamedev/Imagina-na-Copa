@@ -1,15 +1,14 @@
-#ifndef INVENTORY_H
-#define INVENTORY_H
+#ifndef AIM_H
+#define AIM_H
 
 #include <SDL2/SDL.h>
 #include "imageload.h"
 
-
-class Inventory
+class Aim
 {
 public:
-	Inventory();
-	~Inventory();
+	Aim();
+	~Aim();
 	void init();
 	void draw();
 	void release();
@@ -21,4 +20,4 @@ private:
 	bool isDrawn;
 };
 
-#endif // INVENTORY_H
+#endif // AIM_H

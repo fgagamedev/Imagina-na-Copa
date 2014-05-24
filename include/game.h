@@ -4,11 +4,9 @@
 #include "system.h"
 #include "stage.h"
 #include "window.h"
-#include "canvas.h"
 #include "keyboard.h"
-#include "loadImages.h"
-#include "fade.h"
 #include "resource.h"
+#include "frontend.h"
 
 class Game {
 public:
@@ -21,13 +19,11 @@ public:
 
 private:
     Stage stage;
+    FrontEnd* frontEnd;
     
     System *m_system;
     Window *m_window;
-    Canvas *m_canvas;
     Keyboard *m_keyboard;
-    Fade *m_fade;
-    LoadImages *m_loadImages;
 
     struct ISM * m_stack;
     

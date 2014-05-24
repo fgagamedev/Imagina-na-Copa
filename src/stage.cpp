@@ -7,30 +7,42 @@ using namespace std;
 
 Stage::Stage()
 {
-	hud = new Hud();
-	entity = new Entity();
-	scenario = new Scenario();
+	try{
+		hud = new Hud();
+		entity = new Entity();
+		scenario = new Scenario();
+	}
+	catch (const string& e)
+	{
+		delete scenario;
+		delete entity;
+		delete hud;
+
+		throw e;
+	}
 }
 
 Stage::~Stage()
 {
-	// Nothing yet
+	delete scenario;
+	delete entity;
+	delete hud;
 }
 
 void 
 Stage::init()
 {
+    scenario->init();
 	hud->init();
     entity->init();
-    scenario->init();
 }
 
 void 
 Stage::draw()
 {
+    scenario->draw();
 	hud->draw();
     entity->draw();
-    scenario->draw();
 }
 
 void 
@@ -42,7 +54,7 @@ Stage::update()
 void 
 Stage::release()
 {
+    scenario->release();
 	hud->release();
     entity->release();
-    scenario->release();
 }

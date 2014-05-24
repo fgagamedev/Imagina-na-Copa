@@ -7,30 +7,44 @@ using namespace std;
 
 Entity::Entity()
 {
-	caio = new Caio();
-	mira = new Mira();
-	enemies = new Enemies();
+	try 
+	{
+		caio = new Caio();
+		aim = new Aim();
+		enemy = new Enemy();
+	}
+	catch (const string& e)
+	{
+		delete enemy;
+		delete aim;
+		delete caio;
+
+		throw e;	
+	}
+
 }
 
 Entity::~Entity()
 {
-	// Nothing yet
+	delete enemy;
+	delete aim;
+	delete caio;
 }
 
 void 
 Entity::init()
 {
 	caio->init();
-	mira->init();
-	enemies->init();
+	aim->init();
+	enemy->init();
 }
 
 void 
 Entity::draw()
 {
 	caio->draw();
-	mira->draw();
-	enemies->draw();
+	aim->draw();
+	enemy->draw();
 }
 
 void 
@@ -43,6 +57,6 @@ void
 Entity::release()
 {
 	caio->release();
-	mira->release();
-	enemies->release();
+	aim->release();
+	enemy->release();
 }
