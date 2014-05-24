@@ -1,6 +1,7 @@
 #include <string>
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_image.h>
+#include "systemlogger.h"
 #include "imageload.h"
 #include <iostream>
 
@@ -8,6 +9,7 @@ using namespace std;
 
 ImageLoad::ImageLoad()
 {
+    SystemLogger::step("[Image Load] Contructing.");
 	m_renderer = NULL;
 }
 
@@ -16,8 +18,10 @@ static ImageLoad* instance = NULL;
 ImageLoad* 
 ImageLoad::getInstance()
 {
+    SystemLogger::step("[Image Load] Getting Instance.");
 	if (instance == NULL)
 	{
+        SystemLogger::step("[Image Load] Using Constructor to Instance.");
 		instance = new ImageLoad();
 	}
 		
@@ -27,12 +31,14 @@ ImageLoad::getInstance()
 void 
 ImageLoad::releaseInstance()
 {
+    SystemLogger::step("[Image Load] Releasing Instance.");
 	delete instance;
 }
 
 void 
 ImageLoad::setRenderer(SDL_Renderer* renderer)
 {
+    SystemLogger::step("[Image Load] Setting Renderer.");
 	m_renderer = renderer;
 }
 
@@ -40,6 +46,8 @@ ImageLoad::setRenderer(SDL_Renderer* renderer)
 SDL_Texture* 
 ImageLoad::loadImg(const string& path)
 {
+    SystemLogger::step("[Image Load] Loading Image."); // PAREI AQUI ARKYE
+
 	if (m_renderer == NULL)
 	{
 		return NULL;

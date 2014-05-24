@@ -1,5 +1,6 @@
 #include "game.h"
 #include "imageload.h"
+#include "systemlogger.h"
 
 #include <string>
 #include <SDL2/SDL.h>
@@ -11,6 +12,7 @@ Game::Game()
 {
     try 
     {
+        SystemLogger::step("[Game] Trying to Construct.");
         m_system = new System();
         m_window = new Window();
 
@@ -24,17 +26,19 @@ Game::Game()
     } 
     catch (const string& e)
     {
+        SystemLogger::error(e);
+        SystemLogger::step("[Game] Destroying Manually.");
         free(m_stack);
         delete frontEnd;
         delete m_keyboard;
         delete m_window;
         delete m_system;
-        throw e;
     }
 }
 
 Game::~Game()
 {
+    SystemLogger::step("[Game] Destroying.");
     free(m_stack);
     delete frontEnd;
     delete m_keyboard;
@@ -45,6 +49,7 @@ Game::~Game()
 void
 Game::init()
 {
+    SystemLogger::step("[Game] Using Init Method.");
     frontEnd->init();
     stage.init();
 }
@@ -52,6 +57,7 @@ Game::init()
 void
 Game::shutdown()
 {
+    SystemLogger::step("[Game] Using Shutdown Method.");
     stage.release();
     frontEnd->release();
 }
@@ -59,6 +65,7 @@ Game::shutdown()
 void
 Game::run()
 {
+    SystemLogger::step("[Game] Using Run Method.");
     frontEnd->draw();
 
     while ( !m_quit )
