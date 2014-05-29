@@ -68,6 +68,19 @@ Aim::update()
      //   m_position.x = 710;
 }
 
+bool 
+Aim::overEnemy(SDL_Rect rect)
+{
+    if (m_position.x < rect.x && m_position.x > rect.x-45 && m_position.y < rect.y+55 && m_position.y > rect.y-45)
+	{
+        u = 1;
+
+		return shoot;
+	}
+
+	return false;
+}
+
 void
 Aim::overPlayer(SDL_Rect rect)
 {   
@@ -86,6 +99,7 @@ bool
 Aim::handle(SDL_Event& event)
 {
 	bool processed = false;
+	shoot = false;
     switch (event.type)
     {
         case SDL_MOUSEMOTION:
@@ -96,6 +110,7 @@ Aim::handle(SDL_Event& event)
 
         case SDL_MOUSEBUTTONDOWN:
             //u++;
+			shoot = true;
             processed = true;
         break;
 

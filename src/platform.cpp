@@ -26,7 +26,8 @@ Platform::~Platform()
 void 
 Platform::init()
 {
-	m_texture = imageLoad->loadImg("res/images/platform.png");
+	int w, h;
+	m_texture = imageLoad->loadImg("res/images/platform.png", &w, &h);
 }
 
 void 

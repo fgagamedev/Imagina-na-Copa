@@ -14,7 +14,7 @@ public:
 
 	void setRenderer(SDL_Renderer* renderer);
 
-	SDL_Texture* loadImg(const string& path);
+	SDL_Texture* loadImg(const string& path, int *w, int *h);
 	void release(SDL_Texture* texture);
 	void update(SDL_Texture* texture, SDL_Rect* srcRect, SDL_Rect* destRect);
 	void render();

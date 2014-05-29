@@ -19,6 +19,7 @@ public:
 	void release();
 
 	void overPlayer(SDL_Rect rect);
+	bool overEnemy(SDL_Rect rect);
 
 	bool handle(SDL_Event& event);
 private:
@@ -29,6 +30,7 @@ private:
 	ImageLoad* imageLoad;
 
 	int u;
+	bool shoot;
 };
 
 #endif // AIM_H

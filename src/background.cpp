@@ -26,8 +26,8 @@ Background::~Background()
 void
 Background::init()
 {
-
-	m_texture = imageLoad->loadImg("res/images/background.png");
+	int w, h;
+	m_texture = imageLoad->loadImg("res/images/background.png", &w, &h);
 }
 
 void

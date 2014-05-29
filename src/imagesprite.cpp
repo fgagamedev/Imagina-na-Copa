@@ -1,5 +1,6 @@
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_image.h>
+
 #include <string>
 #include <iostream>
 #include "imagesprite.h"
@@ -25,9 +26,7 @@ bool
 ImageSprite::loadFromFile(const string& path)
 {
 	free();
-	SDL_Texture* newTexture = imageLoad->loadImg(path);
-	//m_width = newTexture->w;
-	//m_height = newTexture->h;
+	SDL_Texture* newTexture = imageLoad->loadImg(path, &m_width, &m_height);
 	m_texture = newTexture;
 	return m_texture != NULL;
 }
