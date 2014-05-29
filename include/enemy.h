@@ -8,6 +8,16 @@
 class Enemy
 {
 public:
+<<<<<<< HEAD
+=======
+<<<<<<< Updated upstream
+	Enemy();
+	~Enemy();
+	void init();
+	void draw();
+	void release();
+=======
+>>>>>>> c0f3889543340193a9efdf91c019a0e5649ce5d4
 	Enemy(int x, int y);
 	virtual ~Enemy();
 
@@ -15,6 +25,10 @@ public:
 	virtual void draw();
 	virtual void update(Uint32 delta);
 	virtual void release();
+<<<<<<< HEAD
+=======
+>>>>>>> Stashed changes
+>>>>>>> c0f3889543340193a9efdf91c019a0e5649ce5d4
 	
 	SDL_Rect boundingBox() const;
 
@@ -34,12 +48,23 @@ protected:
 	ImageSprite* m_imageSpriteCurupira;
 
 
+<<<<<<< HEAD
+=======
+<<<<<<< Updated upstream
+	bool isDrawn;
+=======
+
+>>>>>>> c0f3889543340193a9efdf91c019a0e5649ce5d4
 	SDL_Rect m_clips[8];
 	int uC[2];
 	int dxC[2];
 	int dxU[3];
 	int speedC;
 	int speedU;
+<<<<<<< HEAD
+=======
+>>>>>>> Stashed changes
+>>>>>>> c0f3889543340193a9efdf91c019a0e5649ce5d4
 };
 
 #endif // ENEMY_H

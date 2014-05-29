@@ -58,6 +58,15 @@ Aim::draw()
 void 
 Aim::update()
 {
+<<<<<<< HEAD
+=======
+<<<<<<< Updated upstream
+	if(position.x < 0)
+        position.x = 0;
+	if((position.x + 20) > 800)
+        position.x = 780;
+=======
+>>>>>>> c0f3889543340193a9efdf91c019a0e5649ce5d4
 	if(m_position.y < 90)
         u = 0;
     else
@@ -87,6 +96,10 @@ Aim::overPlayer(SDL_Rect rect)
     // Caution cursor if it's pointed to Caio   
     if (m_position.x < rect.x && m_position.x > rect.x-45 && m_position.y < rect.y+55 && m_position.y > rect.y-45)
         u = 0;
+<<<<<<< HEAD
+=======
+>>>>>>> Stashed changes
+>>>>>>> c0f3889543340193a9efdf91c019a0e5649ce5d4
 }
 
 void 
@@ -103,10 +116,27 @@ Aim::handle(SDL_Event& event)
     switch (event.type)
     {
         case SDL_MOUSEMOTION:
+<<<<<<< HEAD
+=======
+<<<<<<< Updated upstream
+            position.x = event.motion.x-10;
+            position.y = event.motion.y-10;
+=======
+>>>>>>> c0f3889543340193a9efdf91c019a0e5649ce5d4
             m_position.x = event.motion.x;
             m_position.y = event.motion.y;
             processed = true;
         break;
+<<<<<<< HEAD
+=======
+
+        case SDL_MOUSEBUTTONDOWN:
+            //u++;
+			shoot = true;
+            processed = true;
+        break;
+>>>>>>> Stashed changes
+>>>>>>> c0f3889543340193a9efdf91c019a0e5649ce5d4
 
         case SDL_MOUSEBUTTONDOWN:
             //u++;

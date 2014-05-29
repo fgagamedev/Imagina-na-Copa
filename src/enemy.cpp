@@ -8,8 +8,24 @@ using namespace std;
 
 Enemy::Enemy(int x, int y)
 {
+<<<<<<< HEAD
 	m_box.x = x;
 	m_box.y = y;
+=======
+<<<<<<< Updated upstream
+	positionCurupira.y = 350;
+	positionCurupira.w = 50;
+	positionCurupira.h = 100;
+=======
+	m_box.x = x;
+	m_box.y = y;
+
+    m_clips[0].x = 0;
+    m_clips[0].y = 0;
+    m_clips[0].w = 50;
+    m_clips[0].h = 100;
+>>>>>>> Stashed changes
+>>>>>>> c0f3889543340193a9efdf91c019a0e5649ce5d4
 
     m_clips[0].x = 0;
     m_clips[0].y = 0;
