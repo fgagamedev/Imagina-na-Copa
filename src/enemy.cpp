@@ -5,11 +5,21 @@
 
 using namespace std;
 
-Enemy::Enemy()
+Enemy::Enemy(int x, int y)
 {
+<<<<<<< Updated upstream
 	positionCurupira.y = 350;
 	positionCurupira.w = 50;
 	positionCurupira.h = 100;
+=======
+	m_box.x = x;
+	m_box.y = y;
+
+    m_clips[0].x = 0;
+    m_clips[0].y = 0;
+    m_clips[0].w = 50;
+    m_clips[0].h = 100;
+>>>>>>> Stashed changes
 
 	positionUrubu.y = 175;
 	positionUrubu.w = 50;
@@ -52,3 +62,10 @@ Enemy::release()
 {
 	SDL_DestroyTexture(m_texture);
 }
+
+SDL_Rect 
+Enemy::boundingBox() const
+{
+	return m_box;
+}
+

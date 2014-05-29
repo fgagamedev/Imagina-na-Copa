@@ -26,7 +26,8 @@ Hp::~Hp()
 void 
 Hp::init()
 {
-	m_texture = imageLoad->loadImg("res/images/hp.png");
+	int w, h;
+	m_texture = imageLoad->loadImg("res/images/hp.png", &w, &h);
 }
 
 void 

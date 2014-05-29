@@ -16,13 +16,24 @@ public:
 	void update();
 	void release();
 
+<<<<<<< Updated upstream
+=======
+	void overPlayer(SDL_Rect rect);
+	bool overEnemy(SDL_Rect rect);
+
+>>>>>>> Stashed changes
 	bool handle(SDL_Event& event);
 private:
 	SDL_Texture* m_texture;
 	SDL_Rect position;
 	ImageLoad* imageLoad;
 
+<<<<<<< Updated upstream
 	bool isDrawn;
+=======
+	int u;
+	bool shoot;
+>>>>>>> Stashed changes
 };
 
 #endif // AIM_H

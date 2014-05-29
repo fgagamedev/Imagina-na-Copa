@@ -26,7 +26,8 @@ Inventory::~Inventory()
 void 
 Inventory::init()
 {
-	m_texture = imageLoad->loadImg("res/images/inventario.png");
+	int w, h;
+	m_texture = imageLoad->loadImg("res/images/inventario.png", &w, &h);
 
 }
 

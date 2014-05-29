@@ -26,7 +26,8 @@ Sebastiao::~Sebastiao()
 void 
 Sebastiao::init()
 {
-	m_texture = imageLoad->loadImg("res/images/sebastiao.png");
+	int w, h;
+	m_texture = imageLoad->loadImg("res/images/sebastiao.png", &w, &h);
 }
 
 void 

@@ -44,7 +44,7 @@ ImageLoad::setRenderer(SDL_Renderer* renderer)
 
 
 SDL_Texture* 
-ImageLoad::loadImg(const string& path)
+ImageLoad::loadImg(const string& path, int *w, int *h)
 {
     SystemLogger::step("[Image Load] Loading Image."); // PAREI AQUI ARKYE
 
@@ -62,6 +62,9 @@ ImageLoad::loadImg(const string& path)
     }
 
     SDL_SetColorKey (surface, SDL_TRUE, SDL_MapRGB(surface->format, 0xFA, 0xCF, 0xAC));
+
+	*w = surface->w;
+	*h = surface->h;
 
     SDL_Texture* texture = SDL_CreateTextureFromSurface( m_renderer, surface );
 

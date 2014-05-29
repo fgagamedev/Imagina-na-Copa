@@ -26,7 +26,8 @@ SecondLayer::~SecondLayer()
 void
 SecondLayer::init()
 {
-	m_texture = imageLoad->loadImg("res/images/sun.png");
+	int w, h;
+	m_texture = imageLoad->loadImg("res/images/sun.png", &w, &h);
 }
 
 void

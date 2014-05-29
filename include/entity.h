@@ -5,6 +5,9 @@
 #include "aim.h"
 #include "enemy.h"
 
+#include <vector>
+using std::vector;
+
 class Entity
 {
 public:
@@ -20,7 +23,7 @@ public:
 	Aim* getAim() const;
 private:
 	Caio* caio;
-	Enemy* enemy;
+	vector<Enemy *> enemies;
 	Aim* aim;
 
 };

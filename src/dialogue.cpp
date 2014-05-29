@@ -26,7 +26,8 @@ Dialogue::~Dialogue()
 void 
 Dialogue::init()
 {
-	m_texture = imageLoad->loadImg("res/images/dialogue.png");
+	int w, h;
+	m_texture = imageLoad->loadImg("res/images/dialogue.png", &w, &h);
 }
 
 void 
