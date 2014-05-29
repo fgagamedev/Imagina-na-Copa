@@ -54,16 +54,8 @@ void
 Entity::draw()
 {
 	caio->draw();
-<<<<<<< HEAD
 	for (auto it = enemies.begin(); it != enemies.end(); it++)
 		(*it)->draw();
-=======
-<<<<<<< Updated upstream
-=======
-	for (auto it = enemies.begin(); it != enemies.end(); it++)
-		(*it)->draw();
->>>>>>> Stashed changes
->>>>>>> c0f3889543340193a9efdf91c019a0e5649ce5d4
 	aim->draw();
 }
 
@@ -78,12 +70,6 @@ Entity::update(Uint32 delta)
 	}
  
 	caio->update(delta);
-<<<<<<< HEAD
-=======
-<<<<<<< Updated upstream
-	aim->update();
-=======
->>>>>>> c0f3889543340193a9efdf91c019a0e5649ce5d4
 	for (auto it = enemies.begin(); it != enemies.end(); it++)
 		(*it)->update(delta);
 	aim->update();
@@ -106,10 +92,6 @@ Entity::update(Uint32 delta)
 		enemies.erase(dead);
 	}
 
-<<<<<<< HEAD
-=======
->>>>>>> Stashed changes
->>>>>>> c0f3889543340193a9efdf91c019a0e5649ce5d4
 }
 
 void 
