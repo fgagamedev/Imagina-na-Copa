@@ -4,35 +4,35 @@
 #include <SDL2/SDL.h>
 #include <string>
 #include "imageload.h"
-#include "inputhandler.h"
 #include "imagesprite.h"
+#include "inputhandler.h"
 
-class Caio : public InputHandler
+class Caio : public InputHandler, public ImageSprite
 {
 
 public:
 	Caio();
 	~Caio();
 
-	void init();
-	void draw();
+	void generateClips();
 	void update(Uint32 delta);
-	void release();
-
-	SDL_Rect getRect() const;
-
 	bool handle(SDL_Event& event);
 
-private:
-	SDL_Rect m_clips[16];
-	SDL_Rect m_position;
-	ImageSprite* m_imageSprite;
-	ImageLoad* imageLoad;
+	void moveForward();
+	void moveBackward();
+	void moveJump();
+	void moveCrouch();
+	
+	SDL_Rect getPosition() const;
 
-	bool jumping;
+	int getPosX();
+
+private:
+	bool isMoving;
+	bool isJumping;
+	bool isCrouching;
 	int speed;
 	int dx;
-	int u;
 	float jumpspeed;
 };
 

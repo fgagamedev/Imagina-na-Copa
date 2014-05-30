@@ -1,43 +1,39 @@
-#include "sebastiao.h"
-#include "imageload.h"
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_image.h>
 #include <string>
+#include "imageload.h"
+#include "sebastiao.h"
+#include "systemlogger.h"
 
 using namespace std;
 
-Sebastiao::Sebastiao()
+Sebastiao::Sebastiao() : ImageSprite()
 {
-	position.x = 535;
-	position.y = 10;
-	position.w = 250;
-	position.h = 125;
-
+	imagePath.clear();
+	imagePath.insert(0,"res/images/s_sebastiao.png");
+	generatePosition(550,10,200,90);
+	generateClips();
 	isDrawn = false;
-
-    imageLoad = imageLoad->getInstance();
 }
 
 Sebastiao::~Sebastiao()
 {
-	// Nothing yet
 }
 
-void 
-Sebastiao::init()
+void
+Sebastiao::generateClips()
 {
-	int w, h;
-	m_texture = imageLoad->loadImg("res/images/sebastiao.png", &w, &h);
-}
+	SystemLogger::step("[Sebastiao] Generating Sprite Clips.");
+	addClip(0,0,m_position.w,m_position.h);
+	addClip(m_position.w,0,m_position.w,m_position.h);
 
-void 
-Sebastiao::draw()
-{
-	imageLoad->update(m_texture, NULL, &position);
-}
+	addClip(0,m_position.h,m_position.w,m_position.h);
+	addClip(m_position.w,m_position.h,m_position.w,m_position.h);
 
-void 
-Sebastiao::release()
-{
-	SDL_DestroyTexture(m_texture);
+	addClip(0,0,m_position.h*2,m_position.h);
+	addClip(m_position.w,m_position.h*2,m_position.w,m_position.h);
+	
+	addClip(0,m_position.h*3,m_position.w,m_position.h);
+	addClip(m_position.w,m_position.h*3,m_position.w,m_position.h);
+	SystemLogger::step("[Sebastiao] Finished Generating Sprite Clips.");
 }

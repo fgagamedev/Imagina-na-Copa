@@ -2,34 +2,26 @@
 #define AIM_H
 
 #include <SDL2/SDL.h>
-#include "imageload.h"
+#include "caio.h"
 #include "imagesprite.h"
 #include "inputhandler.h"
-#include "caio.h"
+#include "systemlogger.h"
 
-class Aim : public InputHandler
+class Aim : public InputHandler, public ImageSprite
 {
 public:
 	Aim();
 	~Aim();
 
-	void init();
-	void draw();
-	void update();
-	void release();
-
 	void overPlayer(SDL_Rect rect);
 	bool overEnemy(SDL_Rect rect);
 
+	void update();
 	bool handle(SDL_Event& event);
-private:
-	SDL_Texture* m_texture;
-	SDL_Rect m_position;
-	SDL_Rect m_clips[3];
-	ImageSprite* m_imageSprite;
-	ImageLoad* imageLoad;
 
-	int u;
+	void generateClips();
+
+private:
 	bool shoot;
 };
 

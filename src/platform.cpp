@@ -1,43 +1,28 @@
-#include "platform.h"
-#include "imageload.h"
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_image.h>
 #include <string>
+#include "imageload.h"
+#include "platform.h"
+#include "systemlogger.h"
 
 using namespace std;
 
 Platform::Platform()
 {
-	position.x = 0;
-	position.y = 450;
-	position.w = 800;
-	position.h = 150;
-
-	isDrawn = false;
-
-    imageLoad = imageLoad->getInstance();
+	imagePath.clear();
+	imagePath.assign("res/images/platform.png");
+	generatePosition(0,450,800,150);
+	generateClips();
 }
 
 Platform::~Platform()
 {
-	// Nothing yet
 }
 
-void 
-Platform::init()
+void
+Platform::generateClips()
 {
-	int w, h;
-	m_texture = imageLoad->loadImg("res/images/platform.png", &w, &h);
-}
-
-void 
-Platform::draw()
-{
-   	imageLoad->update(m_texture, NULL, &position);
-}
-
-void 
-Platform::release()
-{
-	SDL_DestroyTexture(m_texture);
+	SystemLogger::step("[Platform] Generating Sprite Clips.");
+	addClip(0,0,800,150);
+	SystemLogger::step("[Platform] Finished Generating Sprite Clips.");
 }

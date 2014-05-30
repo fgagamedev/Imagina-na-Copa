@@ -1,8 +1,8 @@
-#include "background.h"
-#include "imageload.h"
-#include <string>
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_image.h>
+#include <string>
+#include "background.h"
+#include "imageload.h"
 
 using namespace std;
 
@@ -26,8 +26,8 @@ Background::~Background()
 void
 Background::init()
 {
-	int w, h;
-	m_texture = imageLoad->loadImg("res/images/background.png", &w, &h);
+
+	m_texture = imageLoad->loadImg("res/images/background.png");
 }
 
 void

@@ -2,6 +2,7 @@
 #include <SDL2/SDL_image.h>
 #include <string>
 #include "hud.h"
+#include "systemlogger.h"
 
 using namespace std;
 
@@ -13,9 +14,11 @@ Hud::Hud()
 		inventory = new Inventory();
 		dialogue = new Dialogue();
 		sebastiao = new Sebastiao();
+		gameMenu = new GameMenu();
 	}
 	catch (const string& e)
 	{
+		delete gameMenu;
 		delete sebastiao;
 		delete dialogue;
 		delete inventory;
@@ -27,6 +30,7 @@ Hud::Hud()
 
 Hud::~Hud()
 {
+	delete gameMenu;
 	delete sebastiao;
 	delete dialogue;
 	delete inventory;
@@ -40,15 +44,18 @@ Hud::init()
 	inventory->init();
 	dialogue->init();
 	sebastiao->init();
+	gameMenu->init();
 }
 
 void 
 Hud::draw()
 {
-	hp->draw();
-	inventory->draw();
+	hp->drawEach();
+	inventory->drawEach();
 	dialogue->draw();
 	sebastiao->draw();
+	gameMenu->draw();
+    SystemLogger::loop("[HUD] Finished Draw");
 }
 
 void 
@@ -64,4 +71,5 @@ Hud::release()
 	inventory->release();
 	dialogue->release();
 	sebastiao->release();
+	gameMenu->release();
 }

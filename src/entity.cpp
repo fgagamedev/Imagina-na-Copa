@@ -1,5 +1,5 @@
 #include "entity.h"
-#include "curupira.h"
+#include "enemy.h"
 
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_image.h>
@@ -15,7 +15,7 @@ Entity::Entity()
 		caio = new Caio();
 		aim = new Aim();
 
-		Enemy *enemy = new Curupira(700, 350, 1, 650, 350);
+		enemy = new Curupira(700, 350, 1, 420, 315);
 		enemies.push_back(enemy);
 
 		enemy = new Curupira(300, 350, 1, 420, 315);
@@ -23,6 +23,8 @@ Entity::Entity()
 	}
 	catch (const string& e)
 	{
+		for (auto it = enemies.begin(); it != enemies.end(); it++)
+			delete *it;
 		delete aim;
 		delete caio;
 
@@ -35,7 +37,6 @@ Entity::~Entity()
 {
 	for (auto it = enemies.begin(); it != enemies.end(); it++)
 		delete *it;
-	
 	delete aim;
 	delete caio;
 }
@@ -45,7 +46,6 @@ Entity::init()
 {
 	caio->init();
 	aim->init();
-
 	for (auto it = enemies.begin(); it != enemies.end(); it++)
 		(*it)->init();
 }
@@ -64,23 +64,25 @@ Entity::update(Uint32 delta)
 {
 	if (enemies.size() < 1)
 	{
-		Enemy *enemy = new Curupira((rand() % 200) + 300, 350, 1, (rand() % 200) + 150, (rand() % 200) + 150);
+		enemy = new Curupira((rand() % 200) + 300, 350, 1, (rand() % 200) + 150, (rand() % 200) + 150);
 		enemy->init();
 		enemies.push_back(enemy);
 	}
  
 	caio->update(delta);
+
 	for (auto it = enemies.begin(); it != enemies.end(); it++)
 		(*it)->update(delta);
+
 	aim->update();
 
-	aim->overPlayer(caio->getRect());
+	aim->overPlayer(caio->getPosition());
 
 	auto dead = enemies.end();
 
 	for (auto it = enemies.begin(); it != enemies.end(); it++)
 	{
-		if (aim->overEnemy((*it)->boundingBox()))
+		if (aim->overEnemy((*it)->position()))
 		{
 			dead = it;
 		}
@@ -91,7 +93,6 @@ Entity::update(Uint32 delta)
 		delete *dead;
 		enemies.erase(dead);
 	}
-
 }
 
 void 

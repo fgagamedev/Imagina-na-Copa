@@ -1,71 +1,54 @@
 #include "curupira.h"
 #include "systemlogger.h"
+#include <iostream>
 
-#include <sstream>
 using namespace std;
 
 Curupira::Curupira(int x, int y, int dx, int max_x, int max_y)
-	: Enemy(x, y)
+	: Enemy() 
 {
 	m_speed = 50;
 	m_dx = dx;
 	m_frame = 0;
-	m_sprite = NULL;
-
-	m_box.w = 50;
-	m_box.h = 100;
 
 	m_max_x = max_x;
 	m_max_y = max_y;
+
+	imagePath.clear();
+    imagePath.insert(0,"res/images/s_curupira.png");
+    generatePosition(x, y, 50, 100);
+    generateClips();
 }
 
 void 
-Curupira::init()
+Curupira::generateClips()
 {
-	m_sprite = new ImageSprite();
-	int w, h;
-	m_sprite->loadFromFile("res/images/s_curupira.png");
+	SystemLogger::step("[Curupira] Generating Sprite Clips.");
+	addClip(0,0,m_position.w,m_position.h);
+    addClip(m_position.w,0,m_position.w,m_position.h);
+    addClip(m_position.w*2,0,m_position.w,m_position.h);
+    addClip(m_position.w*3,0,m_position.w,m_position.h);
 
-	ostringstream os;
-}
-
-void 
-Curupira::draw()
-{
-	SDL_Rect clip;
-	clip.x = (m_frame % 4) * m_box.w;
-	clip.y = (m_frame / 4) * m_box.h;
-	clip.w = m_box.w;
-	clip.h = m_box.h;
-
-	SDL_Rect position;
-	position.x = m_box.x;
-	position.y = m_box.y;
-	position.w = m_box.w;
-	position.h = m_box.h;
-
-	imageLoad->update(m_sprite->m_texture, &clip, &position);
+    addClip(0,m_position.h,m_position.w,m_position.h);
+    addClip(m_position.w,m_position.h,m_position.w,m_position.h);
+    addClip(m_position.w*2,m_position.h,m_position.w,m_position.h);
+    addClip(m_position.w*3,m_position.h,m_position.w,m_position.h);
+    SystemLogger::step("[Curupira] Finished Generating Sprite Clips.");
 }
 
 void 
 Curupira::update(Uint32 delta)
 {	
+    m_clipNumber = 0;
 	if (delta < 100)
 	{
-		m_box.x += round(((m_speed*delta)/1000.0)*m_dx);
+		m_position.x += round(((m_speed*delta)/1000.0)*m_dx);
 
-		if (m_box.x >= m_max_x)
+		if (m_position.x >= m_max_x)
 			m_dx = -1;
-		if (m_box.x <= m_max_y)
+		if (m_position.x <= m_max_y)
 			m_dx = 1;
 	}
 
 	delta = 0;
 }
-
-void 
-Curupira::release()
-{
-
-}
-

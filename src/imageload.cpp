@@ -1,9 +1,9 @@
-#include <string>
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_image.h>
-#include "systemlogger.h"
-#include "imageload.h"
 #include <iostream>
+#include <string>
+#include "imageload.h"
+#include "systemlogger.h"
 
 using namespace std;
 
@@ -44,9 +44,9 @@ ImageLoad::setRenderer(SDL_Renderer* renderer)
 
 
 SDL_Texture* 
-ImageLoad::loadImg(const string& path, int *w, int *h)
+ImageLoad::loadImg(const string& path)
 {
-    SystemLogger::step("[Image Load] Loading Image."); // PAREI AQUI ARKYE
+    SystemLogger::step("[Image Load] Loading Image.");
 
 	if (m_renderer == NULL)
 	{
@@ -57,19 +57,18 @@ ImageLoad::loadImg(const string& path, int *w, int *h)
 
     if( surface == NULL )
     {
+        SystemLogger::step("[Image Load] Null Surface.");
         cout << SDL_GetError() << endl;
         throw "Impossível carregar a imagem!";
     }
 
     SDL_SetColorKey (surface, SDL_TRUE, SDL_MapRGB(surface->format, 0xFA, 0xCF, 0xAC));
 
-	*w = surface->w;
-	*h = surface->h;
-
     SDL_Texture* texture = SDL_CreateTextureFromSurface( m_renderer, surface );
 
     if( texture == NULL )
     {
+        SystemLogger::step("[Image Load] Null Texture.");
     	SDL_FreeSurface(surface);
     	throw "Impossível criar a textura!";
     }

@@ -3,21 +3,19 @@
 
 #include <SDL2/SDL.h>
 #include "imageload.h"
+#include "imagesprite.h"
 
 
-class Inventory
+class Inventory : public ImageSprite
 {
 public:
 	Inventory();
 	~Inventory();
-	void init();
-	void draw();
-	void release();
-private:
-	SDL_Texture* m_texture;
-	SDL_Rect position;
-	ImageLoad* imageLoad;
 
+	void drawEach();
+	void generateClips();
+
+private:
 	bool isDrawn;
 };
 

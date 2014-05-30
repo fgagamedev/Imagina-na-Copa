@@ -1,9 +1,8 @@
-#include "game.h"
-#include "systemlogger.h"
-
-#include <string>
 #include <SDL2/SDL.h>
 #include <iostream>
+#include <string>
+#include "game.h"
+#include "systemlogger.h"
 
 using namespace std;
 
@@ -93,8 +92,10 @@ Game::run()
         m_input->eventLoop();
         if(now > last + 25)
         {
-            m_stage->update(now - last);  
+            m_stage->update(now - last);
+            SystemLogger::loop("[Game] Finished Updates");
             m_stage->draw();
+            SystemLogger::loop("[Game] Finished Draw");
             imageLoad->render();
             last = now;
         }
@@ -116,8 +117,7 @@ Game::handle(SDL_Event &event)
         case SDL_KEYDOWN:
             switch(event.key.keysym.sym)
             {
-                //SDL_keycodes
-                case SDLK_LCTRL:
+                case SDLK_LALT:
                     exitstate[0] = true;
                     processed = true;
                 break;
@@ -133,7 +133,7 @@ Game::handle(SDL_Event &event)
         case SDL_KEYUP:
             switch(event.key.keysym.sym)
             {
-                case SDLK_LCTRL:
+                case SDLK_LALT:
                     exitstate[0] = false;
                     processed = true;
                 break;

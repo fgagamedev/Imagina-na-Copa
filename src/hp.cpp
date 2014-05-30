@@ -1,47 +1,42 @@
-#include "hp.h"
-#include "imageload.h"
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_image.h>
 #include <string>
+#include "imageload.h"
+#include "hp.h"
+#include "systemlogger.h"
 
 using namespace std;
 
-Hp::Hp()
+Hp::Hp() : ImageSprite()
 {
-	position.x = 10;
-	position.y = 10;
-	position.w = 30;
-	position.h = 20;
-
+	imagePath.clear();
+	imagePath.insert(0,"res/images/s_hud.png");
+	generatePosition(0,0,50,15);
+	generateClips();
 	isDrawn = false;
-
-    imageLoad = imageLoad->getInstance();
 }
 
 Hp::~Hp()
 {
-	// Nothing yet
 }
 
 void 
-Hp::init()
+Hp::drawEach()
 {
-	int w, h;
-	m_texture = imageLoad->loadImg("res/images/hp.png", &w, &h);
+	m_position.x = 10;
+	m_position.y = 10;
+    draw();
+    m_position.x = 60;
+    draw();
+    m_position.x = 110;
+    draw();
 }
 
-void 
-Hp::draw()
+void
+Hp::generateClips()
 {
-    imageLoad->update(m_texture, NULL, &position);
-    position.x = 50;
-    imageLoad->update(m_texture, NULL, &position);
-    position.x = 90;
-    imageLoad->update(m_texture, NULL, &position);
-}
-
-void 
-Hp::release()
-{
-	SDL_DestroyTexture(m_texture);	
+	SystemLogger::step("[HP] Generating Sprite Clips.");
+	addClip(0,0,m_position.w,m_position.h);
+	addClip(m_position.w,0,m_position.w,m_position.h);
+	SystemLogger::step("[HP] Finished Generating Sprite Clips.");
 }

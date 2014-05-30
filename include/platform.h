@@ -3,20 +3,17 @@
 
 #include <SDL2/SDL.h>
 #include "imageload.h"
+#include "imagesprite.h"
 
-class Platform 
+class Platform : public ImageSprite
 {
 public:
 	Platform();
 	~Platform();
-	void init();
-	void draw();
-	void release();
-private:
-	SDL_Texture* m_texture;
-	SDL_Rect position;
-	ImageLoad* imageLoad;
 
+	void drawtest();
+	void generateClips();
+private:
 	bool isDrawn;
 };
 

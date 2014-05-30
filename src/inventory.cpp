@@ -1,54 +1,47 @@
-#include "inventory.h"
-#include "imageload.h"
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_image.h>
 #include <string>
+#include "imageload.h"
+#include "inventory.h"
+#include "systemlogger.h"
 
 using namespace std;
 
-Inventory::Inventory()
+Inventory::Inventory() : ImageSprite()
 {
-	position.x = 10;
-	position.y = 40;
-	position.w = 35;
-	position.h = 25;
-
-	isDrawn = false;
-
-    imageLoad = imageLoad->getInstance();
+    imagePath.clear();
+    imagePath.insert(0,"res/images/s_hud.png");
+    generatePosition(0,0,40,40);
+    generateClips();
+    isDrawn = false;
 }
 
 Inventory::~Inventory()
 {
-	// Nothing yet
 }
 
 void 
-Inventory::init()
+Inventory::drawEach()
 {
-	int w, h;
-	m_texture = imageLoad->loadImg("res/images/inventario.png", &w, &h);
-
+    m_position.x = 10;
+    m_position.y = 30;
+    draw();
+    m_position.x += 5 + m_position.w;
+    draw();
+    m_position.x += 5 + m_position.w;
+    draw();
+    m_position.x += 5 + m_position.w;
+    draw();
+    m_position.x += 5 + m_position.w;
+    draw();
+    m_position.x += 5 + m_position.w;
+    draw();
 }
 
-void 
-Inventory::draw()
+void
+Inventory::generateClips()
 {
-    imageLoad->update(m_texture, NULL, &position);
-    position.x = 50;
-    imageLoad->update(m_texture, NULL, &position);
-    position.x = 90;
-    imageLoad->update(m_texture, NULL, &position);
-    position.x = 130;
-    imageLoad->update(m_texture, NULL, &position);
-    position.x = 170;
-    imageLoad->update(m_texture, NULL, &position);
-    position.x = 210;
-    imageLoad->update(m_texture, NULL, &position);
-}
-
-void 
-Inventory::release()
-{
-	SDL_DestroyTexture(m_texture);
+    SystemLogger::step("[Inventory] Generating Sprite Clips.");
+    addClip(0,15,m_position.w,m_position.h);
+    SystemLogger::step("[Inventory] Finished Generating Sprite Clips.");
 }

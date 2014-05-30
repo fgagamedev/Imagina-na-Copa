@@ -1,8 +1,8 @@
-#include "frontend.h"
-#include "imageload.h"
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_image.h>
 #include <string>
+#include "frontend.h"
+#include "imageload.h"
 
 using namespace std;
 
@@ -44,16 +44,15 @@ FrontEnd::~FrontEnd()
 void 
 FrontEnd::init()
 {
-	int w, h;
 	try
 	{
-		menu_texture = imageLoad->loadImg("res/images/menu.png", &w, &h);
+		menu_texture = imageLoad->loadImg("res/images/menu.png");
 	    m_stack = ISM_Insert(m_stack, NULL, &destMenu, menu_texture);
-	    rating_texture = imageLoad->loadImg("res/images/rating.png", &w, &h);
+	    rating_texture = imageLoad->loadImg("res/images/rating.png");
 	    m_stack = ISM_Insert(m_stack, NULL, &destRating, rating_texture);
-	    otherlogos_texture = imageLoad->loadImg("res/images/otherlogos.png", &w, &h);
+	    otherlogos_texture = imageLoad->loadImg("res/images/otherlogos.png");
 	    m_stack = ISM_Insert(m_stack, NULL, &destOtherLogo, otherlogos_texture);
-	    tryforcelogo_texture = imageLoad->loadImg("res/images/logo.png", &w, &h);
+	    tryforcelogo_texture = imageLoad->loadImg("res/images/logo.png");
 	    m_stack = ISM_Insert(m_stack, NULL, &destTryforceLogo, tryforcelogo_texture);
 	}
 	catch (const std::string& e)

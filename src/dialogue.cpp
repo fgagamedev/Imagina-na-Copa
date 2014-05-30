@@ -1,8 +1,8 @@
-#include "dialogue.h"
-#include "imageload.h"
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_image.h>
 #include <string>
+#include "dialogue.h"
+#include "imageload.h"
 
 using namespace std;
 
@@ -26,8 +26,7 @@ Dialogue::~Dialogue()
 void 
 Dialogue::init()
 {
-	int w, h;
-	m_texture = imageLoad->loadImg("res/images/dialogue.png", &w, &h);
+	m_texture = imageLoad->loadImg("res/images/dialogue.png");
 }
 
 void 

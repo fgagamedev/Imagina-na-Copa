@@ -14,15 +14,16 @@ public:
 
 	void setRenderer(SDL_Renderer* renderer);
 
-	SDL_Texture* loadImg(const string& path, int *w, int *h);
+	SDL_Texture* loadImg(const string& path);
 	void release(SDL_Texture* texture);
 	void update(SDL_Texture* texture, SDL_Rect* srcRect, SDL_Rect* destRect);
 	void render();
 	void fadein(SDL_Texture* texture, SDL_Rect* srcRect, SDL_Rect* destRect);
 	void fadeout(SDL_Texture* texture, SDL_Rect* srcRect, SDL_Rect* destRect);
+	SDL_Renderer* m_renderer;
+	
 private:
 	ImageLoad();
-	SDL_Renderer* m_renderer;
 	Uint8 m_alpha;
 };
 

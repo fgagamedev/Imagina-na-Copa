@@ -4,6 +4,7 @@
 #include "caio.h"
 #include "aim.h"
 #include "enemy.h"
+#include "curupira.h"
 
 #include <vector>
 using std::vector;
@@ -25,7 +26,7 @@ private:
 	Caio* caio;
 	vector<Enemy *> enemies;
 	Aim* aim;
-
+	Enemy* enemy;
 };
 
 #endif // ENTITY_H

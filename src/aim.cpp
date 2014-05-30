@@ -1,121 +1,93 @@
-#include "aim.h"
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_image.h>
-#include <string>
 #include <iostream>
+#include <string>
+#include "aim.h"
 
 using namespace std;
 
-//construtor modificado
-Aim::Aim()
+Aim::Aim() : ImageSprite()
 {
-	m_position.x = 400;
-	m_position.y = 300;
-	m_position.w = 87;
-	m_position.h = 90;
-
-    m_clips[0].x = 100;
-    m_clips[0].y = 0;
-    m_clips[0].w = 90;
-    m_clips[0].h = 90;
-
-    m_clips[1].x = 200;
-    m_clips[1].y = 0;
-    m_clips[1].w = 90;
-    m_clips[1].h = 90;
-    
-    m_clips[2].x = 300;
-    m_clips[2].y = 0;
-    m_clips[2].w = 90;
-    m_clips[2].h = 90;
-
-    u = 2;
-
-    imageLoad = imageLoad->getInstance();
-    m_imageSprite = new ImageSprite();
+    SystemLogger::step("[Aim] Trying to Construct.");
+    imagePath.clear();
+    imagePath.insert(0,"res/images/s_hud.png");
+    generatePosition(400,300,87,90);
+    generateClips();
     SDL_ShowCursor(0);
 }
 
 Aim::~Aim()
 {
-	delete m_imageSprite;
-}
-
-// Função modificada
-void 
-Aim::init()
-{
-    m_imageSprite->loadFromFile("res/images/s_aim.png");
-}
-
-// Função modificada
-void 
-Aim::draw()
-{
-    imageLoad->update(m_imageSprite->m_texture, &m_clips[u], &m_position);   
+    SystemLogger::step("[Aim] Destroying.");
+    release();
 }
 
 void 
 Aim::update()
 {
-	if(m_position.y < 90)
-        u = 0;
-    else
-        u = 2;
+    SystemLogger::loop("[Aim] Updating.");
+    m_clipNumber = 2;
+}
 
-    //cout << Caio::getPositionX() << endl;
-	//if((m_position.x + 90) > 800)
-     //   m_position.x = 710;
+void
+Aim::overPlayer(SDL_Rect rect)
+{
+    SystemLogger::loop("[Aim] Searching if Targeted an Entity (Over Player).");   
+    if (    (m_position.x < rect.x) && (m_position.x > rect.x-45) &&
+            (m_position.y < rect.y+55) && (m_position.y > rect.y-45)    )
+    {
+        SystemLogger::condition("[Aim] Targeted an Entity (Over Player).");
+        m_clipNumber = 0;
+    }
 }
 
 bool 
 Aim::overEnemy(SDL_Rect rect)
 {
     if (m_position.x < rect.x && m_position.x > rect.x-45 && m_position.y < rect.y+55 && m_position.y > rect.y-45)
-	{
-        u = 1;
+    {
+        m_clipNumber = 1;
 
-		return shoot;
-	}
+        return shoot;
+    }
 
-	return false;
+    return false;
 }
 
 void
-Aim::overPlayer(SDL_Rect rect)
-{   
-    // Caution cursor if it's pointed to Caio   
-    if (m_position.x < rect.x && m_position.x > rect.x-45 && m_position.y < rect.y+55 && m_position.y > rect.y-45)
-        u = 0;
-}
-
-void 
-Aim::release()
+Aim::generateClips()
 {
-	SDL_DestroyTexture(m_texture);
+    SystemLogger::step("[Aim] Generating Sprite Clips.");
+    addClip(100,0,87,90);
+    addClip(200,0,87,90);
+    addClip(300,0,87,90);
+    SystemLogger::step("[Aim] Finished Generating Sprite Clips.");
 }
 
 bool 
 Aim::handle(SDL_Event& event)
 {
+    SystemLogger::loop("[Aim] Handling Events.");
 	bool processed = false;
-	shoot = false;
+    shoot = false;
+    
     switch (event.type)
     {
         case SDL_MOUSEMOTION:
-            m_position.x = event.motion.x;
-            m_position.y = event.motion.y;
+            SystemLogger::conditionPlus(0,"[Aim] MouseMotion.");
+            m_position.x = event.motion.x-45;
+            m_position.y = event.motion.y-45;
             processed = true;
         break;
 
         case SDL_MOUSEBUTTONDOWN:
-            //u++;
-			shoot = true;
+            SystemLogger::conditionPlus(0,"[Aim] MouseButtonDown.");
+            shoot = true;
             processed = true;
         break;
 
         case SDL_MOUSEBUTTONUP:
-            //u--;
+            SystemLogger::conditionPlus(0,"[Aim] MouseButtonUp.");
             processed = true;
         break;
 

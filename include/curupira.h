@@ -1,17 +1,16 @@
 #ifndef CURUPIRA_H
 #define CURUPIRA_H
 
+#include "imagesprite.h"
 #include "enemy.h"
 
-class Curupira : public Enemy 
+class Curupira : public Enemy
 {
 public:
 	Curupira(int x, int y, int dx, int max_x, int max_y);
 
-	void init();
-	void draw();
+	void generateClips();
 	void update(Uint32 delta);
-	void release();
 
 protected:
 	int m_max_x;

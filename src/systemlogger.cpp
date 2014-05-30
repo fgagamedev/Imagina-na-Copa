@@ -1,14 +1,28 @@
-#include "systemlogger.h"
 #include <iostream>
+#include "systemlogger.h"
 
 using namespace std;
 
+bool SystemLogger::isConditionPlusVerbose = false;
+bool SystemLogger::isConditionVerbose = false;
+bool SystemLogger::isLoopVerbose = false;
 bool SystemLogger::isStepVerbose = false;
 
 void
-SystemLogger::log(const string& message)
+SystemLogger::condition(const string& message)
 {
-	cerr << "System:	" << message << endl;
+	if(SystemLogger::isConditionVerbose)
+		cout << "Condition:	" << message << endl;
+}
+
+void
+SystemLogger::conditionPlus(int type, const string& message)
+{
+	if(SystemLogger::isConditionPlusVerbose)
+	{
+		if(type==0)
+			cout << "Mouse Action:	" << message << endl;
+	}
 }
 
 void
@@ -25,10 +39,21 @@ SystemLogger::errorSDL(const string& message, const string& error)
 }
 
 void
+SystemLogger::log(const string& message)
+{
+	cerr << "System:	" << message << endl;
+}
+
+void
+SystemLogger::loop(const string& message)
+{
+	if(SystemLogger::isLoopVerbose)
+		cout << "Loop:	" << message << endl;
+}
+
+void
 SystemLogger::step(const string& message)
 {
-	if(SystemLogger::isStepVerbose==true)
-	{
-		cout << "Step: " << message << endl;
-	}
+	if(SystemLogger::isStepVerbose)
+		cout << "Step:	" << message << endl;
 }

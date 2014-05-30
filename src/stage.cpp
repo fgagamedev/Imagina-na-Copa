@@ -1,14 +1,15 @@
-#include "stage.h"
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_image.h>
-#include <string>
 #include <iostream>
+#include <string>
+#include "stage.h"
 
 using namespace std;
 
 Stage::Stage()
 {
-	try{
+	try
+	{
 		hud = new Hud();
 		entity = new Entity();
 		scenario = new Scenario();
@@ -44,12 +45,15 @@ Stage::draw()
     scenario->draw();
 	hud->draw();
     entity->draw();
+    SystemLogger::loop("[Stage] Finished Draw");
 }
 
 void 
 Stage::update(Uint32 delta)
 {
 	entity->update(delta);
+	SystemLogger::loop("[Stage] Finished Updates");
+
 }
 
 void 
