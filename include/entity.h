@@ -19,6 +19,7 @@ public:
 	void draw();
 	void update(Uint32 delta);
 	void release();
+	void collision();
 
 	Caio* getCaio() const;
 	Aim* getAim() const;
@@ -27,6 +28,9 @@ private:
 	vector<Enemy *> enemies;
 	Aim* aim;
 	Enemy* enemy;
+
+	Uint32 now, last;
+	bool collided;
 };
 
 #endif // ENTITY_H

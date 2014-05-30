@@ -28,7 +28,6 @@ private:
     Input *m_input;
     ImageLoad* imageLoad;
 
-    
     System *m_system;
     Window *m_window;
 
